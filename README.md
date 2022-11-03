@@ -7,7 +7,7 @@ This project was developed in order to test to see what unique characteristics g
 ## MVP 
 - There are 100 NFTs minted. 
 - The creator of ColorCoin, me, mints the NFTs, then distributes them. 
-- Each coin will have a color. 
+- Each coin will have a colored thumbnail image. 
 - We will use ERC 721. 
 - The "uniqueness" of each NFT is the color of the coin. 
 - The NFT changes everytime it is traded. We will use a HSL color model, either adding __ to the hue. 
