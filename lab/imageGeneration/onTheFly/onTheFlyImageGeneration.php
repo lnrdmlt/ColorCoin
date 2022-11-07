@@ -20,6 +20,6 @@ if (is_numeric($_GET['l'])) {
 
 ?>
 
-<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
-    <rect width="400" height="400" fill="hsl(<? echo $h ?>,<? echo $s ?>%,<? echo $l ?>%)" />
+<svg width="200" height="300" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="300" fill="hsl(<? echo $h ?>,<? echo $s ?>%,<? echo $l ?>%)" />
 </svg>
