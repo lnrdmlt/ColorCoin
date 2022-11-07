@@ -6,7 +6,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
 contract OnChainMetadataGeneration{
-    function generateImage (uint nameNum) public pure returns (string memory) {
+    function generateMetadata (uint nameNum) public pure returns (string memory) {
         bytes memory json = abi.encodePacked(
             '{',
             '"name": "ColorCoin#',
