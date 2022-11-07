@@ -1,5 +1,5 @@
 for i in range(100):
-    with open(f"build/{i + 1}.json", "w") as _file:
+    with open(f"{i + 1}.json", "w") as _file:
         _file.write(
             f"""{{
     "name": "ColorCoin #{ i + 1 }",
