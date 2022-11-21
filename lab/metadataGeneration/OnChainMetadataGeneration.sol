@@ -5,6 +5,9 @@ pragma solidity >=0.7.0 <0.9.0;
 import "@openzeppelin/contracts/utils/Strings.sol"; 
 import "@openzeppelin/contracts/utils/Base64.sol";
 
+/**
+ * This contract uses json file delievered by a data URI in order to create the neccesary information about the NFT. 
+ **/
 contract OnChainMetadataGeneration{
     function generateMetadata (uint nameNum) public pure returns (string memory) {
         bytes memory json = abi.encodePacked(

@@ -8,10 +8,10 @@ This project was developed in order to test to see what unique characteristics g
 - There are 100 NFTs minted. 
 - The creator of ColorCoin, me, mints the NFTs.
 - We distribute ColorCoin to known Wallet Address, but then keep the remainding within the contract creator's wallet. 
-- Each coin will have a colored thumbnail image. hen distributes them. 
+- Each coin will have a colored thumbnail image. 
 - We will use ERC 721. 
 - The "uniqueness" of each NFT is the color of the coin. 
-- The NFT changes everytime it is traded. We will use a HSL color model, either adding __ to the hue. 
+- The NFT changes everytime it is traded. We will use a HSL color model, either adding 10 to the hue. 
 - Each Token will have a name, number, color.
     
 ## NICE TO HAVE

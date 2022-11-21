@@ -5,6 +5,9 @@ pragma solidity >=0.7.0 <0.9.0;
 import "@openzeppelin/contracts/utils/Strings.sol"; 
 import "@openzeppelin/contracts/utils/Base64.sol";
 
+/**
+ * This contract generates a svg, using a data URI in order to provide a thumbnail to the image generated for the NFT. 
+ **/
 contract OnChainImageGeneration{
     function generateImage (uint hue, uint saturation, uint lightness) public pure returns (string memory) {
         bytes memory svg = abi.encodePacked(
