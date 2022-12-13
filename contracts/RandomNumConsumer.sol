@@ -10,7 +10,7 @@ contract RandomNumConsumer{
         _addr = addr;
     }
 
-    function randomNum () public view returns (uint) {
+    function randomNum () public view virtual returns (uint) {
         IRandomNum randomNumContract = IRandomNum(_addr);
         return randomNumContract.randomNum();
     }

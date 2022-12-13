@@ -17,9 +17,12 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
     /**
      * Mints 100 NFTs, a list of recipients will recieve the first NFTs, and the rest will go to the creator's wallet.
      **/
-    constructor(address[] memory recipients, address randomNumberAddr) ERC721("ColorCoin", "CLC") {
+    constructor(address[] memory recipients, address randomNumberAddr, uint256 totalSupply) ERC721("ColorCoin", "CLC") {
+        // set up RandomNumConsumer 
         setRandomNum(randomNumberAddr);
-        for (uint256 i = 0; i < 5; i++) {
+
+        // mints _ nfts to different recipients
+        for (uint256 i = 0; i < totalSupply ; i++) {
             if (i < recipients.length) {
                 safeMint(recipients[i]);
             } else {
@@ -35,11 +38,12 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        huesById[tokenId] = randomNum();
+        huesById[tokenId] = 5; 
+        // @TODO make sure to change back to randomNum
     }
 
     /**
-     * Generates a svg, using a data URI in order to provide a thumbnail to the image generated for the NFT.
+     * Generawes a svg, using a data URI in order to provide a thumbnail to the image generated for the NFT.
      **/
     function generateImage(
         uint256 hue,
