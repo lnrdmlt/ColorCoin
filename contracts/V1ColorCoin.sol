@@ -6,8 +6,9 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
+import "./RandomNumConsumer.sol";
 
-contract ColorCoin is ERC721, Ownable {
+contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
@@ -16,7 +17,8 @@ contract ColorCoin is ERC721, Ownable {
     /**
      * Mints 100 NFTs, a list of recipients will recieve the first NFTs, and the rest will go to the creator's wallet.
      **/
-    constructor(address[] memory recipients) ERC721("ColorCoin", "CLC") {
+    constructor(address[] memory recipients, address randomNumberAddr) ERC721("ColorCoin", "CLC") {
+        setRandomNum(randomNumberAddr);
         for (uint256 i = 0; i < 5; i++) {
             if (i < recipients.length) {
                 safeMint(recipients[i]);
@@ -33,7 +35,7 @@ contract ColorCoin is ERC721, Ownable {
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        huesById[tokenId] = 50;
+        huesById[tokenId] = randomNum();
     }
 
     /**
@@ -95,14 +97,6 @@ contract ColorCoin is ERC721, Ownable {
                     Base64.encode(json)
                 )
             );
-    }
-
-    /**
-     * This contract creates a random value based on the previous block hash.
-     * DANGEROUS, WILL ONLY GENERATE 1 VALUE PER BLOCK.
-     **/
-    function randomNum() public view returns (uint256) {
-        return uint256(blockhash(block.number - 1));
     }
 
     function tokenURI(uint256 tokenId)
