@@ -8,7 +8,7 @@ contract TestValueGenerator is ColorCoin{
 
     }
 
-    function randomNum() public override pure returns(uint256) {
-        return 1;
+    function randomNum() public override view returns(uint256) {
+        return block.timestamp;
     }
 }

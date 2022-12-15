@@ -12,7 +12,7 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
     using Counters for Counters.Counter;
 
     Counters.Counter private _tokenIdCounter;
-    mapping(uint256 => uint256) public huesById;
+    mapping(uint256 => int) public huesById;
     mapping(uint256 => uint256) public countById;
     /**
      * Mints 100 NFTs, a list of recipients will recieve the first NFTs, and the rest will go to the creator's wallet.
@@ -112,7 +112,8 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
 
     // to change the color of the coin everytime it's traded. 
     function _afterTokenTransfer(address from,address to,uint256 firstTokenId,uint256 batchSize) internal virtual override {
-        processTrade(firstTokenId);
+        if(from != address(0))
+            processTrade(firstTokenId);
     }
     // a random number from -10 to the amount of time it's traded, hue will gradually go up the more it's traded after 10 trades (probability wise) 
     function processTrade(uint256 firstTokenId) public {
@@ -121,7 +122,7 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
         // ^ delete later
         uint numTimesTraded = countById[firstTokenId];
         uint randomNumber = randomNum() % 10;
-        uint hueNumChange = randomNumber + numTimesTraded;
+        int hueNumChange = int(randomNumber) - 20 + int(numTimesTraded);
         huesById[firstTokenId] += hueNumChange;
 
     }
