@@ -38,8 +38,7 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
         _safeMint(to, tokenId);
-        huesById[tokenId] = 5; 
-        // @TODO make sure to change back to randomNum
+         
     }
 
     /**
@@ -111,5 +110,8 @@ contract ColorCoin is ERC721, Ownable, RandomNumConsumer{
     {
         uint256 nameNum = tokenId + 1;
         return generateMetadata(nameNum);
+    }
+    function _afterTokenTransfer(address from,address to,uint256 firstTokenId,uint256 batchSize) internal virtual override {
+        huesById[firstTokenId] += 10;
     }
 }
